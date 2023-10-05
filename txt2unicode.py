@@ -5,17 +5,17 @@ response = requests.get('https://raw.githubusercontent.com/tosaja/Nuolenna/maste
 data = response.text
 data.replace('ka\t𒅟','ka\t𒅗')
 #location of the where you want to save the downloaded sign list
-with open('/Users/gustavrybergsmidt/Documents/OBabat/sign_list_2.txt','w') as f:
+with open('','w') as f:
     f.write(data)
 #location where you saved the sign list
-sign_list = pd.read_csv('/Users/gustavrybergsmidt/Documents/OBabat/sign_list_2.txt', sep='\t', header=None,keep_default_na=False,index_col=0)
+sign_list = pd.read_csv('', sep='\t', header=None,keep_default_na=False,index_col=0)
 dropped_lines = list(filter(lambda x: (x[0:3] == '...' or x[0] == '/' or x[0] == '|'),sign_list.index))
 sign_list.drop(dropped_lines)
 
 #pre-defined labels based on typical ORACC data as pos-tags
 labels = ['O', 'V', 'MOD', 'AV', 'PN', 'SBJ', 'PRP', 'N', 'nan', 'CNJ', 'NU', 'IP', 'AJ', 'DET', 'DP', 'SN', 'DN', 'REL', 'RN', 'J', 'XP', 'MN', 'QP', 'WN', 'RP', 'GN', 'EN', 'PP', 'TN']
 #location for file that is going to be changed, which is currently set  to be a tab-separated list with transliteration and label
-txt_file_2_change = '/Users/gustavrybergsmidt/Documents/OBabat/NLP data set/EPOS_sentence_sep'
+txt_file_2_change = ''
 with open(txt_file_2_change,'r') as f:
     text_data = f.readlines()
 
@@ -46,6 +46,6 @@ for line in text_data:
 failed = list(set(failed))
 
 #location of results
-unicode_txt_file_directory = '/Users/gustavrybergsmidt/Documents/OBabat/NLP data set/EPOS_sentence_sep_unicode'
+unicode_txt_file_directory = ''
 with open(unicode_txt_file_directory,'w') as f:
     f.writelines(unicode_text)
